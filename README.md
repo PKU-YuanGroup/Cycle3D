@@ -18,7 +18,7 @@ Generation-Reconstruction Cycle</a></h2>
 
 ## 😮 Highlights
 
-### 🔥 Generation-Reconstruction cycle for the unified diffusion
+### 🔥 Generation-Reconstruction cycle for the unified diffusion process
 -  The pre-trained 2D diffusion model trained on billions of web images can generate high-quality texture.
 -  The reconstruction model can ensure consistency across multi-views.
 -  We cyclically utilizes a 2D diffusion-based generation module and a feed-forward 3D reconstruction module during the multi-step diffusion process.
