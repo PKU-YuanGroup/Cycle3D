@@ -18,7 +18,7 @@ Generation-Reconstruction Cycle</a></h2>
 
 ## 😮 Highlights
 
-Repaint123 crafts 3D content from a single image, matching 2D generation quality in just ***2 minutes***.
+Cycle3D achieves high-quality and consistent image-to-3D generation.
 
 ### 🔥 Simple Gaussian Splatting baseline for image-to-3D
 - Coarse stage: Gaussian Splatting optimized with SDS loss by Zero123 for geometry formation.
@@ -36,7 +36,7 @@ Welcome to **watch** 👀 this repository for the latest updates.
 
 ✅ **[2024.7.28]** : We have released our paper, Cycle3D on [arXiv](https://arxiv.org/abs/2312.13271).
 
-✅ **[2023.7.28]** : Release [project page](https://PKU-YuanGroup.github.io/Cycle3D/).
+✅ **[2024.7.28]** : Release [project page](https://PKU-YuanGroup.github.io/Cycle3D/).
 - [ ] Code release.
 - [ ] Online Demo.
 
