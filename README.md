@@ -20,12 +20,12 @@ Generation-Reconstruction Cycle</a></h2>
 
 Cycle3D achieves high-quality and consistent image-to-3D generation.
 
-### 🔥 Simple Gaussian Splatting baseline for image-to-3D
-- Coarse stage: Gaussian Splatting optimized with SDS loss by Zero123 for geometry formation.
-- Fine stage: Mesh optimized with MSE loss by Stable Diffusion for texture refinement.
-
-### 💡 View consistent, high quality and fast speed
-- Stable Diffusion for high quality and controllable repainting for reference alignment   -->   view-consistent high-quality image generation.
+### 🔥 Generation-Reconstruction Cycle for the unified diffusion
+-  The pre-trained 2D diffusion model trained on billions of web images can generate high-quality texture.
+-  The reconstruction model can ensure consistency across multi-views.
+-  We cyclically utilizes a 2D diffusion-based generation module and a feed-forward 3D reconstruction module during the multi-step diffusion process.
+### 💡 Diverse generation
+- customize 
 - View-consistent high-quality images with simple MSE loss   -->   fast high-quality 3D content reconstruction.
 
 
