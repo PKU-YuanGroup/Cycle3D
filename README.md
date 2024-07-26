@@ -34,9 +34,9 @@ Repaint123 crafts 3D content from a single image, matching 2D generation quality
 
 Welcome to **watch** 👀 this repository for the latest updates.
 
-✅ **[2023.12.21]** : We have released our paper, Repaint123 on [arXiv](https://arxiv.org/abs/2312.13271).
+✅ **[2024.7.28]** : We have released our paper, Cycle3D on [arXiv](https://arxiv.org/abs/2312.13271).
 
-✅ **[2023.12.21]** : Release [project page](https://PKU-YuanGroup.github.io/repaint123/).
+✅ **[2023.7.28]** : Release [project page](https://PKU-YuanGroup.github.io/Cycle3D/).
 - [ ] Code release.
 - [ ] Online Demo.
 
