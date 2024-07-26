@@ -18,8 +18,6 @@ Generation-Reconstruction Cycle</a></h2>
 
 ## 😮 Highlights
 
-Cycle3D achieves high-quality and consistent image-to-3D generation.
-
 ### 🔥 Generation-Reconstruction Cycle for the unified diffusion
 -  The pre-trained 2D diffusion model trained on billions of web images can generate high-quality texture.
 -  The reconstruction model can ensure consistency across multi-views.
