@@ -1,0 +1,590 @@
+
+<!DOCTYPE html>
+<html>
+<!-- <head>
+<meta charset="utf-8">
+<title>菜鸟教程(runoob.com)</title>
+</head>
+<body>
+ 
+<h1>我的第一个标题</h1>
+ 
+<p>我的第一个段落。</p>
+ 
+</body> -->
+<!-- <!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SyncDreamer: Generating Multiview-consistent Images from a Single-view Image</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,800italic,400,700,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="css/project.css" media="screen" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/iconize.css" />
+    
+    <script src="js/google-code-prettify/prettify.js"></script> -->
+  </head>
+
+  <!-- cover -->
+  <section>
+    <div class="jumbotron text-center mt-0">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2>Cycle3D: High-quality and Consistent Image-to-3D Generation </br>via Generation-Reconstruction Cycle
+            </h2>
+            <h4 style="color:#5a6268;">Arxiv 2024 </h4>
+            <hr>
+            <h6>
+                <a href="" target="_blank">Zhenyu Tang</a><sup>1,*</sup>,
+                <a href="" target="_blank">Junwu Zhang</a><sup>1,*</sup>,
+                <a href="https://cxh0519.github.io/" target="_blank">Xinhua Cheng</a><sup>1</sup>,
+                <a href="" target="_blank">Wangbo Yu</a><sup>1</sup>,
+                <a href="" target="_blank">Chaoran Feng</a><sup>1</sup>,
+                <a href="" target="_blank">Yatian Pang</a><sup>3</sup>,
+                <a href="https://jpthu17.github.io/" target="_blank">Peng Jin</a><sup>1</sup>,
+                <br>
+                <a href="" target="_blank">Bin Lin</a><sup>1</sup>,
+                <a href="" target="_blank">Bin Zhu</a><sup>1</sup>,
+                <a href="" target="_blank">Munan Ning</a><sup>1,2</sup>,
+                <a href="https://yuanli2333.github.io/" target="_blank">Li Yuan</a><sup>1,2</sup></h6>
+            <p>  
+                <sup>*</sup>Equal contributions &nbsp;&nbsp; <br>
+                <sup>1</sup>Peking University &nbsp;&nbsp;
+                <sup>2</sup>Pengcheng Laboratory &nbsp;&nbsp;
+                <sup>3</sup>National University of Singapore &nbsp;&nbsp;
+
+            </p>
+
+            <div class="row justify-content-center">
+              <div class="column">
+                  <p class="mb-5"><a class="btn btn-large btn-light" href="https://arxiv.org/abs/2312.13271" role="button"  target="_blank">
+                    <i class="fa fa-file"></i> Paper</a> </p>
+              </div>
+              <div class="column">
+                  <p class="mb-5"><a class="btn btn-large btn-light" href="https://github.com/PKU-YuanGroup/Cycle3D" role="button"  target="_blank">
+                    <i class="fa fa-github-alt"></i> Code </a> </p>
+              </div>
+              <!-- <div class="column">
+                  <p class="mb-5"><a class="btn btn-large btn-light" href="https://connecthkuhk-my.sharepoint.com/:f:/g/personal/yuanly_connect_hku_hk/EjYHbCBnV-VPjBqNHdNulIABq9sYAEpSz4NPLDI72a85vw" role="button"  target="_blank">
+                    <i class="fa fa-database"></i> Model </a> </p>
+              </div> -->
+              <div class="column">
+                  <p class="mb-5"><a class="btn btn-large btn-light" href="" role="button"  target="_blank">
+                    <i class="fa fa-desktop"></i> Live Demo </a> </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+   <!-- abstract -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h3>Abstract</h3>
+          <!-- <hr style="width:100%;height:0.7px;background-color:rgba(0, 0, 0, 0.665);margin-top:1em">
+             Create high-fidelity 3D object mesh from a single image in <strong>5 SECONDS</strong>. -->
+            <!-- <hr style="margin-top:0px">
+            <h6 style="color:#8899a5"> Repaint123 crafts 3D content from a single image, matching 2D generation quality in just <strong>2 minutes</strong>. </h6> -->
+            
+            <!-- <img src="assets/performance.png" alt="performance" width="90%"> -->
+            <br>
+            <!-- <br> -->
+            <!-- <h6 style="color:#8899a5"> SyncDreamer is able to directly generate multiview consistent images, which allows 3D reconstruction by NeuS or NeRF without SDS loss. </h6> -->
+
+              <!-- <video width="80%" playsinline="" autoplay="autoplay" loop="loop" preload="" muted="">
+                  <source src="video/teaser.mp4" type="video/mp4">
+              </video>
+
+			        <br> -->
+          
+          <p class="text-left">
+            Recent 3D large reconstruction models typically employ a two-stage process: first generate multi-view images by a multi-view diffusion model, and then utilize a feed-forward model to reconstruct images to 3D content. However, multi-view diffusion models often produce low-quality and inconsistent images, adversely affecting the quality of the final 3D reconstruction. To address this issue, we propose a unified 3D generation framework called Cycle3D, which cyclically utilizes a 2D diffusion-based generation module and a feed-forward 3D reconstruction module during the multi-step diffusion process. During the denoising process, the 2D diffusion model can also control the generation of unseen views and inject reference-view information, thereby enhancing the diversity and texture consistency of 3D generation. Extensive experiments demonstrate the superior ability of our method to create 3D content with high-quality and consistency compared with state-of-the-art baseline methods. 
+            
+          <!-- </p>
+          <img src="assets/architecture.png" alt="Overview" width="80%">
+          <img src="assets/framework.png" alt="Overview" width="77%"> -->
+          
+          <!-- <video width="80%" playsinline="" autoplay="autoplay" loop="loop" preload="" muted="">
+            <source src="video/progress_low.mp4" type="video/mp4">
+        </video> -->
+
+        <p class="text-center">
+          <!-- Reverse process of SyncDreamer's multiview diffusion. -->
+          <!-- Overview of Our Repaint123. -->
+        </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+  
+   <!-- abstract -->
+   <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h3>Overview of our Cycle3D</h3>
+            <hr style="margin-top:0px">
+            <!-- <h6 style="color:#8899a5"> SyncDreamer is able to directly generate multiview consistent images, which allows 3D reconstruction by NeuS or NeRF without SDS loss. </h6> -->
+
+              <!-- <video width="80%" playsinline="" autoplay="autoplay" loop="loop" preload="" muted="">
+                  <source src="video/teaser.mp4" type="video/mp4">
+              </video>
+
+			        <br> -->
+      
+          <!-- <h3>Image-to-3D generation pipeline</h3> -->
+
+          <p class="text-left">
+            During the multi-step denoising process of Cycle3D, the input view remains clean, the pre-trained 2D generation model gradually produces multi-view images with higher quality, while the reconstruction model continuously corrects their 3D inconsistencies. The red boxes highlight inconsistencies between the multi-view images, which are then corrected by reconstruction model.
+        
+          </p>
+          <img src="assets/overview.png" alt="Overview" width="80%">
+          <br>
+
+          <p class="text-left">
+          <h3>Process of our Cycle3D</h3>
+        </p>
+            <hr style="margin-top:0px">
+          <p class="text-left">
+            We propose a unified image-to-3D Diffusion framework that cyclically utilizes pre-trained 2D Diffusion model and 3D reconstruction model. During denoising, 2D Diffusion model can inject reference-view features, and the reconstruction model incorporates time embeddings to adapt to  \(\hat{x}_0 \)  at different timesteps. Additionally, the interaction between features of  reconstruction model's encoder and 2D Diffusion model's decoder enhances robustness of reconstruction. During inference, we use the multi-view images \( \hat{x}'_0 \)  rendered by  reconstruction model and the previous step \(x_t\) , resampling to obtain \(x_{t-1}\), while keeping the input view clean.
+
+          </p>
+          <img src="assets/process.png" alt="Overview" width="77%">
+          
+          <!-- <video width="80%" playsinline="" autoplay="autoplay" loop="loop" preload="" muted="">
+            <source src="video/progress_low.mp4" type="video/mp4">
+        </video> -->
+
+        <p class="text-center">
+          <!-- Reverse process of SyncDreamer's multiview diffusion. -->
+          <!-- Overview of Our Repaint123. -->
+        </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+            <h3>Comparison</h3>
+            <hr style="margin-top:0px">
+            <p>Cycle3D achieves high-quality and consistent 3D generation from a single unposed image. </p>
+
+            <!-- <hr style="margin-top:0px">
+            <video width="80%" playsinline="" autoplay="autoplay" loop="loop" preload="" muted="">
+                <source src="video/gso.mp4" type="video/mp4">
+            </video>
+          <p class="text-left"> -->
+            
+          </p>
+        </div>
+      </div>
+      <div class="container align-items-center">
+        <div class="row1">
+            <!-- Row 0 -->
+            <div class="col-sm-1 d-flex align-items-center justify-content-start p-0">
+                <div class="method-title">
+                    Input
+                </div>
+            </div>
+            <div class="col-sm-25">
+                <img src="assets/videos/ref/anya.png" alt="cherries" class="img-fluid " >
+            </div>
+            <div class="col-sm-25">
+                <img src="assets/videos/ref/cyborg.png" alt="donuts" class="img-fluid " >
+            </div>
+            <div class="col-sm-25">
+                <img src="assets/videos/ref/banana.png" alt="hamburger" class="img-fluid "  >
+            </div>
+            <div class="col-sm-25">
+                <img src="assets/videos/ref/dragon.png" alt="horse" class="img-fluid " >
+            </div>
+            <div class="col-sm-25">
+              <img src="assets/videos/ref/schoolbus.png" alt="stone dragon statue" class="img-fluid " >
+          </div>
+            <div class="col-sm-25">
+                <img src="assets/videos/ref/lion.png" alt="watercolor horse" class="img-fluid " >
+            </div>
+        </div>
+        
+        
+        <!-- Row 1 -->
+        <div class="row1">
+            <div class="col-sm-1 d-flex align-items-center justify-content-start p-0">
+                <div class="method-title">
+                    <a href="https://zouzx.github.io/TriplaneGaussian/">Triplane<br>Gaussian</a>
+                </div>
+            </div>
+            <div class="col-sm-25">
+                <video src="assets/videos/tgs/anya.mp4" autoplay loop playsinline muted type="video/mp4"
+                    style="width: 100%; height: auto;"></video>
+            </div>
+            <div class="col-sm-25">
+                <video src="assets/videos/tgs/cyborg.mp4" autoplay loop playsinline muted type="video/mp4"
+                    style="width: 100%; height: auto;"></video>
+            </div>
+            <div class="col-sm-25">
+                <video src="assets/videos/tgs/banana.mp4" autoplay loop playsinline muted type="video/mp4"
+                    style="width: 100%; height: auto;"></video>
+            </div>
+            <div class="col-sm-25">
+                <video src="assets/videos/tgs/dragon.mp4" autoplay loop playsinline muted type="video/mp4"
+                    style="width: 100%; height: auto;"></video>
+            </div>
+            <div class="col-sm-25">
+              <video src="assets/videos/tgs/schoolbus.mp4" autoplay loop playsinline muted type="video/mp4"
+                  style="width: 100%; height: auto;"></video>
+          </div>
+          <div class="col-sm-25">
+              <video src="assets/videos/tgs/lion.mp4" autoplay loop playsinline muted type="video/mp4"
+                  style="width: 100%; height: auto;"></video>
+          </div>
+        </div>
+
+        <div class="row1">
+            <!-- Row 2 -->
+            <div class="col-sm-1 d-flex align-items-center justify-content-start p-0">
+                <div class="method-title">
+                    <a href="https://github.com/3DTopia/OpenLRM">OpenLRM</a>
+                </div>
+            </div>
+            <div class="col-sm-25">
+                <video src="assets/openlrm/anya.mp4" autoplay loop playsinline muted type="video/mp4"
+                    style="width: 100%; height: auto;"></video>
+            </div>
+            <div class="col-sm-25">
+                <video src="assets/openlrm/cyborg.mp4" autoplay loop playsinline muted type="video/mp4"
+                    style="width: 100%; height: auto;"></video>
+            </div>
+            <div class="col-sm-25">
+                <video src="assets/openlrm/banana.mp4" autoplay loop playsinline muted type="video/mp4"
+                    style="width: 100%; height: auto;"></video>
+            </div>
+            <div class="col-sm-25">
+                <video src="assets/openlrm/dragon.mp4" autoplay loop playsinline muted type="video/mp4"
+                    style="width: 100%; height: auto;"></video>
+            </div>
+            <div class="col-sm-25">
+              <video src="assets/openlrm/schoolbus.mp4" autoplay loop playsinline muted type="video/mp4"
+                  style="width: 100%; height: auto;"></video>
+          </div>
+          <div class="col-sm-25">
+              <video src="assets/openlrm/lion.mp4" autoplay loop playsinline muted type="video/mp4"
+                  style="width: 100%; height: auto;"></video>
+          </div>
+        </div>
+
+        <div class="row11">
+            <!-- Row 3 -->
+            <div class="col-sm-1 d-flex align-items-center justify-content-start p-0">
+                <div class="method-title">
+                    <a href="https://github.com/xxlong0/Wonder3D">Wonder3D</a>
+                </div>
+            </div>
+            <div class="col-sm-25">
+                <video  src="assets/videos/wonder3d/anya.mp4" autoplay loop playsinline muted type="video/mp4"
+                    style="width: 100%; height: auto;"></video>
+            </div>
+            <div class="col-sm-25">
+                <video  src="assets/videos/wonder3d/cyborg.mp4" autoplay loop playsinline muted type="video/mp4"
+                    style="width: 100%; height: auto;"></video>
+            </div>
+            <div class="col-sm-25">
+                <video  src="assets/videos/wonder3d/banana.mp4" autoplay loop playsinline muted type="video/mp4"
+                    style="width: 100%; height: auto;"></video>
+            </div>
+            <div class="col-sm-25">
+                <video  src="assets/videos/wonder3d/dragon.mp4" autoplay loop playsinline muted type="video/mp4"
+                    style="width: 100%; height: auto;"></video>
+            </div>
+            <div class="col-sm-25">
+              <video   src="assets/videos/wonder3d/schoolbus.mp4" autoplay loop playsinline muted type="video/mp4"
+                  style="width: 100%; height: auto;"></video>
+          </div>
+          <div class="col-sm-25">
+              <video  src="assets/videos/wonder3d/lion.mp4" autoplay loop playsinline muted type="video/mp4"
+                  style="width: 100%; height: auto;"></video>
+          </div>
+        </div>
+       
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+              var videos = document.querySelectorAll('.row11 video');
+              videos.forEach(function(video) {
+                  video.playbackRate = 0.33;
+              });
+          });
+      </script>
+
+        <div class="row1">
+            <!-- Row 4 -->
+            <div class="col-sm-1 d-flex align-items-center justify-content-start p-0">
+              <div class="method-title">
+                <a href="https://github.com/3DTopia/LGM">LGM</a>
+            </div>
+            </div>
+            <div class="col-sm-25">
+                <video src="assets/videos/lgm/anya_rgba.mp4" autoplay loop playsinline muted type="video/mp4"
+                    style="width: 100%; height: auto;"></video>
+            </div>
+            <div class="col-sm-25">
+                <video src="assets/videos/lgm/cyborg.mp4" autoplay loop playsinline muted type="video/mp4"
+                    style="width: 100%; height: auto;"></video>
+            </div>
+            <div class="col-sm-25">
+                <video src="assets/videos/lgm/banana.mp4" autoplay loop playsinline muted type="video/mp4"
+                    style="width: 100%; height: auto;"></video>
+            </div>
+            <div class="col-sm-25">
+                <video src="assets/videos/lgm/dragon.mp4" autoplay loop playsinline muted type="video/mp4"
+                    style="width: 100%; height: auto;"></video>
+            </div>
+            <div class="col-sm-25">
+              <video src="assets/videos/lgm/school_bus1.mp4" autoplay loop playsinline muted type="video/mp4"
+                  style="width: 100%; height: auto;"></video>
+          </div>
+          <div class="col-sm-25">
+              <video src="assets/videos/lgm/lion.mp4" autoplay loop playsinline muted type="video/mp4"
+                  style="width: 100%; height: auto;"></video>
+          </div>
+        </div>
+        <div class="row1">
+          <!-- Row 4 -->
+          <div class="col-sm-1 d-flex align-items-center justify-content-start p-0">
+              <div class="method-title">
+                <a href="https://github.com/PKU-YuanGroup/Cycle3D/">Cycle3D</a>
+              </div>
+          </div>
+          <div class="col-sm-25">
+              <video src="assets/videos/ours/anya_rgba.mp4" autoplay loop playsinline muted type="video/mp4"
+                  style="width: 100%; height: auto;"></video>
+          </div>
+          <div class="col-sm-25">
+              <video src="assets/videos/ours/cyborg.mp4" autoplay loop playsinline muted type="video/mp4"
+                  style="width: 100%; height: auto;"></video>
+          </div>
+          <div class="col-sm-25">
+              <video src="assets/videos/ours/banana.mp4" autoplay loop playsinline muted type="video/mp4"
+                  style="width: 100%; height: auto;"></video>
+          </div>
+          <div class="col-sm-25">
+              <video src="assets/videos/ours/dragon.mp4" autoplay loop playsinline muted type="video/mp4"
+                  style="width: 100%; height: auto;"></video>
+          </div>
+          <div class="col-sm-25">
+            <video src="assets/videos/ours/school_bus1.mp4" autoplay loop playsinline muted type="video/mp4"
+                style="width: 100%; height: auto;"></video>
+        </div>
+        <div class="col-sm-25">
+            <video src="assets/videos/ours/lion.mp4" autoplay loop playsinline muted type="video/mp4"
+                style="width: 100%; height: auto;"></video>
+        </div>
+      </div>
+
+    </div>
+    </div>
+  </section>
+  <br>
+  
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+            <h3>More results</h3>
+            <hr style="margin-top:0px">
+            <!-- <p>Repaint123 generates photo-realistic 3D objects from a single unposed image. </p> -->
+
+            <!-- <hr style="margin-top:0px">
+            <video width="80%" playsinline="" autoplay="autoplay" loop="loop" preload="" muted="">
+                <source src="video/gso.mp4" type="video/mp4">
+            </video>
+          <p class="text-left"> -->
+            
+          </p>
+        </div>
+      </div>
+      <div class="container align-items-center">
+        <div class="row">
+            <!-- Row 0 -->
+            <!-- <div class="col-sm-1 d-flex align-items-center justify-content-start p-0">
+                <div class="method-title">
+                    Input
+                </div>
+            </div> -->
+            <div class="col-sm-2">
+                <img src="assets/videos/ref_image/lantern.png" alt="cherries" class="img-fluid  " >
+            </div>
+            <div class="col-sm-2">
+                <img src="assets/videos/ref_image/house1.png" alt="donuts" class="img-fluid   " >
+            </div>
+            <div class="col-sm-2">
+                <img src="assets/videos/ref_image/gramophone.png" alt="hamburger" class="img-fluid   "  >
+            </div>
+            <div class="col-sm-2">
+                <img src="assets/videos/ref_image/shoe.png" alt="horse" class="img-fluid   " >
+            </div>
+            <div class="col-sm-2">
+              <img src="assets/videos/ref_image/chair.png" alt="stone dragon statue" class="img-fluid   " >
+          </div>
+          <div class="col-sm-2">
+            <img src="assets/videos/ref_image/hat.png" alt="stone dragon statue" class="img-fluid   " >
+        </div>
+          <!-- <div class="col-sm-2">
+              <img src="assets/videos/ref/horse_watercolor_2.png" alt="watercolor horse" class="img-fluid " >
+          </div> -->
+        <!-- </div> -->
+
+        <!-- <style>
+          . {
+              width: 66px;
+              height: auto; /* 保持图片的纵横比 */
+          }
+          </style> -->
+        <!-- <div class="col-sm-2">
+            <img src="assets/videos/ref/horse_watercolor_2.png" alt="watercolor horse" class="img-fluid " >
+        </div> -->
+      </div>
+        <!-- Row 1 -->
+        <div class="row">
+            <!-- <div class="col-sm-1 d-flex align-items-center justify-content-start p-0">
+                <div class="method-title">
+                    <a href="https://github.com/cvlab-columbia/zero123">Zero123-XL</a>
+                </div>
+            </div> -->
+            <div class="col-sm-2">
+                <video src="assets/videos/more_results/lantern.mp4" autoplay loop playsinline muted type="video/mp4"
+                    style="width: 100%; height: auto;"></video>
+            </div>
+            <div class="col-sm-2">
+                <video src="assets/videos/more_results/house1.mp4" autoplay loop playsinline muted type="video/mp4"
+                    style="width: 100%; height: auto;"></video>
+            </div>
+            <div class="col-sm-2">
+                <video src="assets/videos/more_results/gramophone.mp4" autoplay loop playsinline muted type="video/mp4"
+                    style="width: 100%; height: auto;"></video>
+            </div>
+            <div class="col-sm-2">
+                <video src="assets/videos/more_results/shoe1.mp4" autoplay loop playsinline muted type="video/mp4"
+                    style="width: 100%; height: auto;"></video>
+            </div>
+            <div class="col-sm-2">
+              <video src="assets/videos/more_results/chair.mp4" autoplay loop playsinline muted type="video/mp4"
+                  style="width: 100%; height: auto;"></video>
+          </div>
+          <div class="col-sm-2">
+              <video src="assets/videos/more_results/hat.mp4" autoplay loop playsinline muted type="video/mp4"
+                  style="width: 100%; height: auto;"></video>
+          </div>
+        </div>
+
+        
+
+        
+    </div>
+    </div>
+  </section>
+  <br>
+
+  <!-- <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+            <h2>Text to image to 3D model</h2>
+            <hr style="margin-top:0px">
+            <video width="80%" playsinline="" autoplay="autoplay" loop="loop" preload="" muted="">
+                <source src="video/t2i.mp4" type="video/mp4">
+            </video>
+
+          <p class="text-left">
+
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br> -->
+  
+  <!-- <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+            <h2>2D design to 3D model</h2>
+            <hr style="margin-top:0px">
+            <video width="80%" playsinline="" autoplay="autoplay" loop="loop" preload="" muted="">
+                <source src="video/drawings.mp4" type="video/mp4">
+            </video>
+
+          <p class="text-center">
+              SyncDreamer enables generating 3D models from 2D designs and hand drawings including skectches, Chinese ink paintings, oil paintings and so on.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br> -->
+
+  
+  <!-- <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+            <h2>Multiple instance generation</h2>
+            <hr style="margin-top:0px">
+            <video width="80%" playsinline="" autoplay="autoplay" loop="loop" preload="" muted="">
+                <source src="video/multiple.mp4" type="video/mp4">
+            </video>
+
+          <p class="text-center">
+            Given the same single-view image, SynDreame allows generating different instances using different random seeds.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br> -->
+
+
+
+
+  <!-- citing -->
+  <div class="container">
+    <div class="row ">
+      <div class="col-12">
+          <h3>Citation</h3>
+          <hr style="margin-top:0px">
+              <pre style="background-color: #e9eeef;padding: 1.25em 1.5em">
+<code> @misc{zhang2023repaint123,
+      title={Repaint123: Fast and High-quality One Image to 3D Generation with Progressive Controllable 2D Repainting},
+      author={Junwu Zhang and Zhenyu Tang and Yatian Pang and Xinhua Cheng and Peng Jin and Yida Wei and Wangbo Yu and Munan Ning and Li Yuan},
+      year={2023},
+      eprint={2312.13271},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}</code>
+              </pre>
+          <hr>
+      </div>
+    </div>
+  </div>
+
+  <footer class="text-center" style="margin-bottom:10px">
+      Thanks to <a href="https://lioryariv.github.io/" target="_blank">Lior Yariv</a> for the website template.
+  </footer>
+
+</body>
+</html>
