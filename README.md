@@ -11,7 +11,7 @@ Generation-Reconstruction Cycle</a></h2>
 
 </h5>
 
-## [Project page](https://PKU-YuanGroup.github.io/repaint123/) | [Paper](https://arxiv.org/abs/2312.13271) | [Live Demo (Coming Soon)]()
+## [Project page](https://PKU-YuanGroup.github.io/Cycle3D/) | [Paper](https://arxiv.org/abs/2312.13271) | [Live Demo (Coming Soon)]()
 
 
 ![image](https://github.com/user-attachments/assets/d6870ef6-4631-4fc2-a2dc-382c054afe0d)
