@@ -63,13 +63,14 @@ This work is built on many amazing research works and open-source projects, than
 If you find our paper and code useful in your research, please consider giving a star :star: and citation :pencil:.
 
 ```BibTeX
-@misc{zhang2023repaint123,
-    title={Repaint123: Fast and High-quality One Image to 3D Generation with Progressive Controllable 2D Repainting},
-    author={Junwu Zhang and Zhenyu Tang and Yatian Pang and Xinhua Cheng and Peng Jin and Yida Wei and Wangbo Yu and Munan Ning and Li Yuan},
-    year={2023},
-    eprint={2312.13271},
-    archivePrefix={arXiv},
-    primaryClass={cs.CV}
+@misc{tang2024cycle3dhighqualityconsistentimageto3d,
+      title={Cycle3D: High-quality and Consistent Image-to-3D Generation via Generation-Reconstruction Cycle}, 
+      author={Zhenyu Tang and Junwu Zhang and Xinhua Cheng and Wangbo Yu and Chaoran Feng and Yatian Pang and Bin Lin and Li Yuan},
+      year={2024},
+      eprint={2407.19548},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2407.19548}, 
 }
 ```
 <!---->
