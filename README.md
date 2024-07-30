@@ -5,13 +5,13 @@ Generation-Reconstruction Cycle</a></h2>
 <h5 align="center">
 
 [![webpage](https://img.shields.io/badge/Webpage-blue)](https://PKU-YuanGroup.github.io/Cycle3D/)
-[![arXiv](https://img.shields.io/badge/Arxiv-2312.13271-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2312.13271)
+[![arXiv](https://img.shields.io/badge/Arxiv-2312.13271-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2407.19548)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/PKU-YuanGroup/repaint123/blob/main/LICENSE) 
 
 
 </h5>
 
-## [Project page](https://PKU-YuanGroup.github.io/Cycle3D/) | [Paper](https://arxiv.org/abs/2312.13271) | [Live Demo (Coming Soon)]()
+## [Project page](https://PKU-YuanGroup.github.io/Cycle3D/) | [Paper](https://arxiv.org/abs/2407.19548) | [Live Demo (Coming Soon)]()
 
 
 ![image](https://github.com/user-attachments/assets/d6870ef6-4631-4fc2-a2dc-382c054afe0d)
