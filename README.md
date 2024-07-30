@@ -30,7 +30,7 @@ Generation-Reconstruction Cycle</a></h2>
 
 Welcome to **watch** 👀 this repository for the latest updates.
 
-✅ **[2024.7.28]** : We have released our paper, Cycle3D on [arXiv](https://arxiv.org/abs/2312.13271).
+✅ **[2024.7.28]** : We have released our paper, Cycle3D on [arXiv](https://arxiv.org/abs/2407.19548).
 
 ✅ **[2024.7.28]** : Release [project page](https://PKU-YuanGroup.github.io/Cycle3D/).
 - [ ] Code release.
