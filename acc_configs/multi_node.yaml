@@ -1,0 +1,19 @@
+compute_environment: LOCAL_MACHINE
+distributed_type: DEEPSPEED
+deepspeed_config:
+  gradient_clipping: 1.0
+  zero_stage: 2
+  deepspeed_hostfile: /remote-home1/yeyang/aigc/aigc/LGM/acc_configs/hostfile
+fsdp_config: {}
+machine_rank: 0
+main_process_ip: 219.223.196.147
+main_process_port: 29504
+main_training_function: main
+num_machines: 4
+num_processes: 32
+rdzv_backend: static
+same_network: true
+tpu_env: []
+tpu_use_cluster: false
+tpu_use_sudo: false
+use_cpu: false
